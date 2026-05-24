@@ -12,6 +12,7 @@ The system handles real-time wind profile simulations using a Variable Frequency
 * **Multi-threaded Edge Core:** Built with Python `threading` to manage hardware communication, SCADA data mapping, and user interfaces asynchronously.
 * **Hybrid Interface:** Features a legacy local configuration tool (`tkinter`) and a modern web dashboard (`Flask` + `Bootstrap`) responsive for smartphones and remote monitoring.
 * **Autonomous Profile Execution:** Executes precise wind speed profiles loaded from standard `.csv` datasets, translating them dynamically into mechanical frequency references.
+* **Hardware Telemetry Integration:** Includes ESP32-based firmware for real-time monitoring of voltage, current, and temperature directly from a custom PCB sensor instrumentation layer.
 
 ---
 
@@ -29,12 +30,23 @@ The Raspberry Pi 4 manages three concurrent network/communication layers:
 <pre>
 ├── legacy_local/
 │   └── emulador_local.py         # Original Tkinter interface for local testing
+├── sensors/
+│   └── sensores.ino              # ESP32 firmware for PCB-mounted voltage, current, and temperature sensors
 ├── templates/
 │   └── index.html                # Responsive web dashboard frontend (Bootstrap)
+├── wind_profile_emulator/        # Elicit wind profile generation and synthesis environment
+│   ├── generador_perfil.py       # Python script using Global Wind Atlas data to synthesize a 3-day profile
+│   ├── heatmapData.csv           # Hourly/monthly wind distribution matrix from Global Wind Atlas (La Guajira)
+│   ├── heatmapData.json          # JSON representation of the hourly/monthly wind speed matrix
+│   ├── windSpeed.csv             # Wind speed percentile probability density data for turbulence modeling
+│   ├── windSpeed.json            # JSON representation of the wind speed percentile dataset
+│   ├── perfil_viento.csv         # Resulting time-series dataset (Wind speed vs. VFD Frequency) loaded by the gateway
+│   └── perfil_viento_grafico.png # Visual plot of the synthesized wind profile time-series
 ├── servidor_web.py               # Main production script (Flask + Dual Modbus Server/Client)
-├── perfil_viento.csv             # Wind velocity time-series profile dataset
 ├── docs/
-│   └── final_paper.pdf           # Final course research paper
+│   ├── final_paper.pdf           # Final course research paper written by the team
+│   ├── mathematical_model.pdf    # Theoretical physical equations and modeling (Savonius model - Reference for future real-blade execution)
+│   └── schematic.pdf             # Electrical schematic diagram utilized for custom data acquisition and PCB instrumentation
 └── README.md                     # Project documentation
 </pre>
 
@@ -84,7 +96,9 @@ sudo python3 servidor_web.py
 
 ## Deliverables & Media
 
-* 📄 **Final Research Paper:** Available in the `/docs` folder, detailing the mathematical models, control loops, and experimental validation results within the DC Microgrid.
+* 📄 **Final Research Paper:** Available in the `/docs/final_paper.pdf` file, detailing the control loops, and experimental validation results within the DC Microgrid.
+* 🧮 **Mathematical Modeling:** Found in `/docs/mathematical_model.pdf`, presenting the system's dynamic and aerodynamic equations.
+* 🔌 **Hardware Design:** Found in `/docs/schematic.pdf`, detailing the signal conditioning and PCB connections for sensor telemetry.
 * 🎥 **System Demonstration Video:** Watch the full system walkthrough, hardware commissioning, and real-time SCADA integration on YouTube: [Watch the Project Video Here](https://www.youtube.com/watch?v=j9mVfkG3Zqc).
 
 ---
