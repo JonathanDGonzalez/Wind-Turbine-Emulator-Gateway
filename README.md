@@ -26,7 +26,7 @@ The Raspberry Pi 4 manages three concurrent network/communication layers:
 ---
 
 ## Repository Structure
-
+<pre>
 ├── legacy_local/
 │   └── emulador_local.py         # Original Tkinter interface for local testing
 ├── data/                         # Raw experimental datasets and cross-validation logs
@@ -49,6 +49,7 @@ The Raspberry Pi 4 manages three concurrent network/communication layers:
 │   ├── mathematical_model.pdf    # Theoretical physical equations and modeling (Savonius model - Reference for future real-blade execution)
 │   └── schematic.pdf             # Electrical schematic diagram utilized for custom data acquisition and PCB instrumentation
 └── README.md                     # Project documentation
+</pre> 
 
 ---
 
