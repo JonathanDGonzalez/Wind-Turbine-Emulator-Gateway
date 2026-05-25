@@ -27,9 +27,10 @@ The Raspberry Pi 4 manages three concurrent network/communication layers:
 
 ## Repository Structure
 
-<pre>
 ├── legacy_local/
 │   └── emulador_local.py         # Original Tkinter interface for local testing
+├── data/                         # Raw experimental datasets and cross-validation logs
+│   └── caract_motor.xlsx         # Unified spreadsheet containing team characterization (Sin carga, Con carga) and Espitia's reference sheets (Mediciones, Compilado, EjemplosCapturaDatos)
 ├── sensors/
 │   └── sensores.ino              # ESP32 firmware for PCB-mounted voltage, current, and temperature sensors
 ├── templates/
@@ -48,7 +49,6 @@ The Raspberry Pi 4 manages three concurrent network/communication layers:
 │   ├── mathematical_model.pdf    # Theoretical physical equations and modeling (Savonius model - Reference for future real-blade execution)
 │   └── schematic.pdf             # Electrical schematic diagram utilized for custom data acquisition and PCB instrumentation
 └── README.md                     # Project documentation
-</pre>
 
 ---
 
